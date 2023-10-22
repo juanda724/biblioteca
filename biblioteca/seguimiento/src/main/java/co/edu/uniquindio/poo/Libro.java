@@ -6,8 +6,8 @@ import static co.edu.uniquindio.util.AssertionUtil.ASSERTION;
 public abstract class Libro {
     private final String nombre;
     private LocalDate añoPublicacion; 
-    Autor autor;
-  
+    public Autor autor;
+    public Editorial editorial;
 
 
     public Libro(String nombre, Autor autor, Editorial editorial, LocalDate añoPublicacion){

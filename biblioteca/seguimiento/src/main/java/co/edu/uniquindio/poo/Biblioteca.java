@@ -60,7 +60,6 @@ public class Biblioteca {
         return cantidadLibros;
     }
     
-
     public Collection <Libro> ObtenerListLibroDigitales(){
         Predicate<Libro> condicion= libro->libro instanceof LibroDigital;
         return libros.stream().filter(condicion).toList();
