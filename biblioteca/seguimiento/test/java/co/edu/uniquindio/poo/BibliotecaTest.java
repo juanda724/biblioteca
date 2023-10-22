@@ -19,6 +19,7 @@ import co.edu.uniquindio.poo.Autor;
 import co.edu.uniquindio.poo.Biblioteca;
 import co.edu.uniquindio.poo.Editorial;
 import co.edu.uniquindio.poo.LibroCD;
+import co.edu.uniquindio.poo.LibroDigital;
 import co.edu.uniquindio.poo.LibroImpreso;
 
 /**
@@ -100,7 +101,7 @@ public class BibliotecaTest implements AppTest {
         var editorial = new Editorial("546", "Editorial Sudamericana", "43005400");
         var libro = new LibroCD("100 años de soledad", autor, editorial, LocalDate.of(1982, 2, 31), 25);
         var editorial2 = new Editorial("456", "Alfagura", "1321");
-        var libro2 = new LibroImpreso("El coronel no tiene quien le escriba", autor, editorial2,null, 5, null);
+        var libro2 = new LibroImpreso("El coronel no tiene quien le escriba", autor, editorial2,null, 5, "Impreso");
 
         biblioteca.registrarLibro(libro);        
         biblioteca.registrarLibro(libro2);
@@ -112,7 +113,9 @@ public class BibliotecaTest implements AppTest {
         LOG.info("Finalizando prueba buscar libro por autor");
     }
 
-    @Test void buscarLibroNombreFormato(){
+    @Test 
+    void buscarLibroNombreFormato(){
+        LOG.info("Iniciando prueba buscar libro por nombre y formato");
         Biblioteca biblioteca = new Biblioteca("Banco de la republica");
         var autor = new Autor("108J7", "Gabriel Garcia Marquez", "Colombia");
         var editorial = new Editorial("546", "Editorial Sudamericana", "43005400");
@@ -124,7 +127,28 @@ public class BibliotecaTest implements AppTest {
         assertTrue(libroEncontrado.isPresent());
         assertEquals("100 años de soledad", libro.getNombre());
         assertEquals("CD", libro.getFormato());
-
+        LOG.info("Finalizando prueba buscar libro por nombre y formato");
     }
+
+    @Test
+    void buscarCantidadLibrosFormato(){
+        LOG.info("Iniciando prueba buscar cantidad libros por formato");
+        Biblioteca biblioteca = new Biblioteca("Banco de la republica");
+        var autor = new Autor("108J7", "Gabriel Garcia Marquez", "Colombia");
+        var editorial = new Editorial("546", "Editorial Sudamericana", "43005400");
+        var libro = new LibroCD("100 años de soledad", autor, editorial, LocalDate.of(1982, 2, 31), 25);
+        var editorial2 = new Editorial("456", "Alfagura", "1321");
+        var libro2 = new LibroImpreso("El coronel no tiene quien le escriba", autor, editorial2,null, 5, "Impreso");
+        var libro3 = new LibroDigital("Cronica de una muerte anunciada", autor, editorial, LocalDate.of(1981,8, 5), "https://www.google.com.co/books/edition/Cr%C3%B3nica_de_una_muerte_anunciada/xzJjBgAAQBAJ?hl=es&gbpv=1&printsec=frontcover", "Digital");       
+
+        biblioteca.registrarLibro(libro);
+        Collection<Integer> cantidades = biblioteca.buscarCantidadLibrosFormato("Gabriel Garcia Marquez");
+        assertEquals(3, cantidades.size());
+        assertEquals(1, cantidades.iterator().next());
+        assertEquals(1, cantidades.iterator().next());
+        assertEquals(1, cantidades.iterator().next());
+        LOG.info("Finalizando prueba buscar cantidad libros por formato");
+    }
+
 }
 

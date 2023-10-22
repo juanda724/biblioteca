@@ -51,16 +51,7 @@ public class Biblioteca {
         return libros.stream().filter(condicion.and(condicion2)).findAny();
     }
 
-    public int contarLibrosAutor(String nombreAutor, Collection<Libro> biblioteca) {
-        int cantidadLibros = 0;
-        for (Libro libro : biblioteca) {
-            if (libro.autor.getNombre().equals(nombreAutor)) {
-                cantidadLibros += 1;
-            }
-        }
-        return cantidadLibros;
-    }
-    
+  
 public Collection<Integer> buscarCantidadLibrosFormato(String nombreAutor) {
     Collection<Integer> cantidades = new ArrayList<>();
     

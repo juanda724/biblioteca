@@ -1,11 +1,11 @@
 # seguimiento
 
-Descripciín basisca de su Proyecto de POO ...
+Clase biblioteca que contiene una lista de libros en CD, digital e impresos
 
 # Autores
 
-- Autor 1
-- Autor 2
+- Cesar Camilo Tulcan
+- Juan David Castañeda
 
 # Herramientas
 
